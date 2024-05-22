@@ -13,7 +13,7 @@ class Automata:
     
     states: list[str]
     alphabet: list[str]
-    transitions: list[Transition]  # Fix: Change 'transitions' to 'Transition'
+    transitions: list[Transition]
     initial_state: str
     final_states: list[str]
 

@@ -5,19 +5,19 @@ from pyformlang.finite_automaton import State, Symbol, NondeterministicFiniteAut
 def automataUnion(automata1: automata.Automata, automata2: automata.Automata):
     newAutomata = automata.Automata([], [], [], '', [])
 
-    # Copiar el alfabeto de ambos autómatas
+ 
     newAutomata.alphabet = list(
         set(automata1.alphabet) & set(automata2.alphabet))
 
-    # Asignar el estado inicial
+   
     newAutomata.initial_state = automata1.initial_state + automata2.initial_state
 
-    # Generar los estados de newAutomata
+
     for state1 in automata1.states:
         for state2 in automata2.states:
             newAutomata.states.append(state1 + state2)
 
-    # Crear las transiciones de newAutomata
+
     for state1 in automata1.states:
         for state2 in automata2.states:
             for symbol in newAutomata.alphabet:
@@ -36,7 +36,6 @@ def automataUnion(automata1: automata.Automata, automata2: automata.Automata):
                 newAutomata.transitions.append(
                     automata.Transition(new_state, symbol, next_state))
 
-    # Asignar los estados finales de newAutomata
     for state1 in automata1.states:
         for state2 in automata2.states:
             if state1 in automata1.final_states or state2 in automata2.final_states:
@@ -50,19 +49,19 @@ def automataUnion(automata1: automata.Automata, automata2: automata.Automata):
 def automataIntersection(automata1: automata.Automata, automata2: automata.Automata):
     newAutomata = automata.Automata([], [], [], '', [])
 
-    # Copiar el alfabeto de ambos autómatas
+   
     newAutomata.alphabet = list(
         set(automata1.alphabet) & set(automata2.alphabet))
 
-    # Asignar el estado inicial
+ 
     newAutomata.initial_state = automata1.initial_state + automata2.initial_state
 
-    # Generar los estados de newAutomata
+
     for state1 in automata1.states:
         for state2 in automata2.states:
             newAutomata.states.append(state1 + state2)
 
-    # Crear las transiciones de newAutomata
+
     for state1 in automata1.states:
         for state2 in automata2.states:
             for symbol in newAutomata.alphabet:
@@ -81,7 +80,6 @@ def automataIntersection(automata1: automata.Automata, automata2: automata.Autom
                 newAutomata.transitions.append(
                     automata.Transition(new_state, symbol, next_state))
 
-    # Asignar los estados finales de newAutomata
     for state1 in automata1.final_states:
         for state2 in automata2.final_states:
             if state1 in automata1.final_states and state2 in automata2.final_states:
@@ -95,20 +93,20 @@ def automataIntersection(automata1: automata.Automata, automata2: automata.Autom
 def automataComplement(automaton: automata.Automata):
     newAutomata = automata.Automata([], [], [], '', [])
 
-    # Construir los estados y transiciones
+
     for state in automaton.states:
         newAutomata.states.append(state)
         if state == automaton.initial_state:
-            # Si el estado original es inicial, será final
+          
             newAutomata.initial_state = state
         if state in automaton.final_states:
-            # Si el estado original es final, será final
+           
             newAutomata.states.append(state)
         else:
-            # Si no es ni inicial ni final, será final
+           
             newAutomata.final_states.append(state)
 
-    # Construir las transiciones
+  
     for transition in automaton.transitions:
         newAutomata.transitions.append(automata.Transition(
             transition.state, transition.symbol, transition.next_state))
@@ -121,16 +119,15 @@ def automataComplement(automaton: automata.Automata):
 def automataReverse(automaton: automata.Automata):
     newAutomata = automata.Automata([], [], [], '', [])
 
-    # Construir los estados
+   
     for state in automaton.states:
         newAutomata.states.append(state)
         if state == automaton.initial_state:
-            # Si el estado original es inicial, será final
+           
             newAutomata.final_states.append(state)
         elif state in automaton.final_states:
-            newAutomata.initial_state = state  # Si el estado original es final, será inicial
-
-    # Construir las transiciones invertidas
+            newAutomata.initial_state = state 
+    
     for transition in automaton.transitions:
         newAutomata.transitions.append(automata.Transition(
             transition.next_state, transition.symbol, transition.state))
@@ -149,8 +146,8 @@ def automataReverse(automaton: automata.Automata):
 
 def validateTransitions(automaton: automata.Automata):
 
-    # Eliminar estados sin transiciones
-    while True: # Mientras haya estados sin transiciones
+ 
+    while True: 
         transitionstoDelete = []
         contador = 0
         for state in automaton.states:
@@ -159,24 +156,24 @@ def validateTransitions(automaton: automata.Automata):
                     contador += 1
 
             if contador == 0 and state != automaton.initial_state:
-                print(f"El estado {state} no tiene transiciones")
+                print(f"The state: {state} has no transitions")
                 transitionstoDelete.append(state)
                 automaton.states.remove(state)
 
             contador = 0
 
-        print("Estos son los estados a eliminar", transitionstoDelete)
+        print("These are the states to eliminate", transitionstoDelete)
 
-        # Eliminar transiciones asociadas a los estados a eliminar
+       
         automaton.transitions = [transition for transition in automaton.transitions
                                 if transition.state not in transitionstoDelete
                                 and transition.next_state not in transitionstoDelete]
 
-        print("Estas son las nuevas transiciones")
+        print("These are the new transitions")
         for transition in automaton.transitions:
-            print(f"Estado: {transition.state}, Simbolo: {transition.symbol}, Estado Siguiente: {transition.next_state}")
+            print(f"State: {transition.state}, Symbol: {transition.symbol}, Next State: {transition.next_state}")
     
-        if transitionstoDelete == []: # Si no hay estados sin transiciones, terminar
+        if transitionstoDelete == []: 
             break
     return automaton
 
@@ -199,7 +196,7 @@ def nfa_to_dfa(nfa):
     print ("____________________________________________________")
     return dfa
 
-# Función para construir el NFA
+
 def build_nfa(automaton):
     alphabet = set(automaton.alphabet)
     initial_state = State(automaton.initial_state)
@@ -219,63 +216,3 @@ def build_nfa(automaton):
     return nfa
 
 
-# def DNFAtoDFA(automaton: automata.Automata):
-#     print ("____________________________________________________")
-#     print ("Comienza la conversion de un automata finito no determinista a determinista")
-#     if isDFA(automaton):
-#         print("El autómata ya es DFA")
-#         return automaton
-
-#     alphabet = automaton.alphabet
-#     initial_state = automaton.initial_state
-#     state_transitions = automata.Transition("", "", "")
-#     tranciciones: list[automata.Transition] = []
-
-#     # Evaluamos nuestro estado initial y vemos a donde nos lleva con cada simbolo del alfabeto
-
-#     # Creo una variable que almacene el estado inicial y la transicion que se hace con cada simbolo del alfabeto
-
-#     for transition in automaton.transitions:
-#         if transition.state == initial_state:
-#             print(f"Entró a validar estados")
-#             state_transitions.state = transition.state
-#             state_transitions.symbol = transition.symbol
-#             state_transitions.next_state = transition.next_state
-#             tranciciones.append(automata.Transition(state_transitions.state, state_transitions.symbol, state_transitions.next_state))
-#             print (f"Estado: {state_transitions.state }, Simbolo: {state_transitions.symbol}, Estado Siguiente: {state_transitions.next_state}")
-    
-#     #Uno los valores de transicion de los estados siguientes cuando tengan el mismo simbolo y los almacenamos en una lista
-
-#     new_transitions:list [automata.Transition] = []
-#     new_state = ""
-#     for letter in alphabet:
-#         for transition in tranciciones:
-#             if transition.symbol == letter:
-#                 new_state += transition.next_state
-#         new_transitions.append(automata.Transition(transition.state, letter, new_state))
-#         new_state = ""
-
-
-#     print("____________________________________________________")
-#     print("Estas son las nuevas transiciones")
-#     for transition in new_transitions:
-#         print(f"Estado: {transition.state}, Simbolo: {transition.symbol}, Estado Siguiente: {transition.next_state}")
-
-#     print("____________________________________________________")
-
-
-
-
-
-
-#     print("____________________________________________________")
-#     print ("Automata finito no determinista a determinista")
-#     print("____________________________________________________")
-        
-#     print("Estas son las nuevas transiciones")
-#     for transition in tranciciones:
-#         print(f"Estado: {transition.state}, Simbolo: {transition.symbol}, Estado Siguiente: {transition.next_state}")
-
-
-#     print("____________________________________________________")   
-#     print("Termina la conversion de un automata finito no determinista a determinista")
