@@ -134,7 +134,7 @@ def automataReverse(automaton: automata.Automata):
     for transition in automaton.transitions:
         newAutomata.transitions.append(automata.Transition(
             transition.next_state, transition.symbol, transition.state))
-        
+
     newAutomata.alphabet = automaton.alphabet
 
     autNFA = newAutomata
@@ -150,7 +150,7 @@ def automataReverse(automaton: automata.Automata):
 def validateTransitions(automaton: automata.Automata):
 
     # Eliminar estados sin transiciones
-    while True: # Mientras haya estados sin transiciones
+    while True:  # Mientras haya estados sin transiciones
         transitionstoDelete = []
         contador = 0
         for state in automaton.states:
@@ -169,14 +169,15 @@ def validateTransitions(automaton: automata.Automata):
 
         # Eliminar transiciones asociadas a los estados a eliminar
         automaton.transitions = [transition for transition in automaton.transitions
-                                if transition.state not in transitionstoDelete
-                                and transition.next_state not in transitionstoDelete]
+                                 if transition.state not in transitionstoDelete
+                                 and transition.next_state not in transitionstoDelete]
 
         print("Estas son las nuevas transiciones")
         for transition in automaton.transitions:
-            print(f"Estado: {transition.state}, Simbolo: {transition.symbol}, Estado Siguiente: {transition.next_state}")
-    
-        if transitionstoDelete == []: # Si no hay estados sin transiciones, terminar
+            print(
+                f"Estado: {transition.state}, Simbolo: {transition.symbol}, Estado Siguiente: {transition.next_state}")
+
+        if transitionstoDelete == []:  # Si no hay estados sin transiciones, terminar
             break
     return automaton
 
@@ -192,30 +193,34 @@ def isDFA(automaton: automata.Automata):
 
     return True
 
+
 def nfa_to_dfa(nfa):
     dfa = nfa.to_deterministic()
-    print ("____________________________________________________")
-    print (dfa)
-    print ("____________________________________________________")
+    print("____________________________________________________")
+    print(dfa)
+    print("____________________________________________________")
     return dfa
 
 # Función para construir el NFA
+
+
 def build_nfa(automaton):
     alphabet = set(automaton.alphabet)
     initial_state = State(automaton.initial_state)
     final_states = set(automaton.final_states)
-    
+
     nfa = NondeterministicFiniteAutomaton()
-    
+
     for state in automaton.states:
         nfa._states.add(State(state))
     nfa.add_start_state(initial_state)
     for final_state in final_states:
         nfa.add_final_state(State(final_state))
-    
+
     for transition in automaton.transitions:
-        nfa.add_transition(State(transition.state), Symbol(transition.symbol), State(transition.next_state))
-    
+        nfa.add_transition(State(transition.state), Symbol(
+            transition.symbol), State(transition.next_state))
+
     return nfa
 
 
@@ -229,7 +234,7 @@ def build_nfa(automaton):
 #     alphabet = automaton.alphabet
 #     initial_state = automaton.initial_state
 #     state_transitions = automata.Transition("", "", "")
-#     tranciciones: list[automata.Transition] = []
+#     transiciones: list[automata.Transition] = []
 
 #     # Evaluamos nuestro estado initial y vemos a donde nos lleva con cada simbolo del alfabeto
 
@@ -243,7 +248,7 @@ def build_nfa(automaton):
 #             state_transitions.next_state = transition.next_state
 #             tranciciones.append(automata.Transition(state_transitions.state, state_transitions.symbol, state_transitions.next_state))
 #             print (f"Estado: {state_transitions.state }, Simbolo: {state_transitions.symbol}, Estado Siguiente: {state_transitions.next_state}")
-    
+
 #     #Uno los valores de transicion de los estados siguientes cuando tengan el mismo simbolo y los almacenamos en una lista
 
 #     new_transitions:list [automata.Transition] = []
@@ -264,18 +269,14 @@ def build_nfa(automaton):
 #     print("____________________________________________________")
 
 
-
-
-
-
 #     print("____________________________________________________")
 #     print ("Automata finito no determinista a determinista")
 #     print("____________________________________________________")
-        
+
 #     print("Estas son las nuevas transiciones")
 #     for transition in tranciciones:
 #         print(f"Estado: {transition.state}, Simbolo: {transition.symbol}, Estado Siguiente: {transition.next_state}")
 
 
-#     print("____________________________________________________")   
+#     print("____________________________________________________")
 #     print("Termina la conversion de un automata finito no determinista a determinista")
