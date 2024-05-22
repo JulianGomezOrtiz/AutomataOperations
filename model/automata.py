@@ -1,5 +1,5 @@
 class Transition:
-    
+
     state: str
     symbol: str
     next_state: str
@@ -9,8 +9,9 @@ class Transition:
         self.symbol = symbol
         self.next_state = next_state
 
+
 class Automata:
-    
+
     states: list[str]
     alphabet: list[str]
     transitions: list[Transition]
@@ -23,6 +24,3 @@ class Automata:
         self.transitions = transitions
         self.initial_state = initial_state
         self.final_states = final_states
-
-
-

@@ -131,7 +131,7 @@ def automataReverse(automaton: automata.Automata):
     for transition in automaton.transitions:
         newAutomata.transitions.append(automata.Transition(
             transition.next_state, transition.symbol, transition.state))
-        
+
     newAutomata.alphabet = automaton.alphabet
 
     autNFA = newAutomata
@@ -166,8 +166,8 @@ def validateTransitions(automaton: automata.Automata):
 
        
         automaton.transitions = [transition for transition in automaton.transitions
-                                if transition.state not in transitionstoDelete
-                                and transition.next_state not in transitionstoDelete]
+                                 if transition.state not in transitionstoDelete
+                                 and transition.next_state not in transitionstoDelete]
 
         print("These are the new transitions")
         for transition in automaton.transitions:
@@ -189,11 +189,12 @@ def isDFA(automaton: automata.Automata):
 
     return True
 
+
 def nfa_to_dfa(nfa):
     dfa = nfa.to_deterministic()
-    print ("____________________________________________________")
-    print (dfa)
-    print ("____________________________________________________")
+    print("____________________________________________________")
+    print(dfa)
+    print("____________________________________________________")
     return dfa
 
 
@@ -201,18 +202,19 @@ def build_nfa(automaton):
     alphabet = set(automaton.alphabet)
     initial_state = State(automaton.initial_state)
     final_states = set(automaton.final_states)
-    
+
     nfa = NondeterministicFiniteAutomaton()
-    
+
     for state in automaton.states:
         nfa._states.add(State(state))
     nfa.add_start_state(initial_state)
     for final_state in final_states:
         nfa.add_final_state(State(final_state))
-    
+
     for transition in automaton.transitions:
-        nfa.add_transition(State(transition.state), Symbol(transition.symbol), State(transition.next_state))
-    
+        nfa.add_transition(State(transition.state), Symbol(
+            transition.symbol), State(transition.next_state))
+
     return nfa
 
 
