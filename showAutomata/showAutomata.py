@@ -1,5 +1,5 @@
 import graphviz as digraph
-import model.automata as automata
+import automata.automata as automata
 from pyformlang.finite_automaton import DeterministicFiniteAutomaton
 
 def showAutomata(automata: automata.Automata, type: str):

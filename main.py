@@ -1,6 +1,6 @@
-import model.automata as automata
-import view.showAutomata as showAutomata
-import controller.automataController as automataController
+import automata.automata as automata
+import showAutomata.showAutomata as showAutomata
+import logic.logicAutomata as automataController
 
 
 def main():

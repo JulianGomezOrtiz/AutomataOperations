@@ -1,4 +1,4 @@
-import model.automata as automata
+import automata.automata as automata
 from pyformlang.finite_automaton import State, Symbol, NondeterministicFiniteAutomaton, DeterministicFiniteAutomaton
 
 
