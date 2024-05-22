@@ -2,185 +2,217 @@ import model.automata as automata
 import view.showAutomata as showAutomata
 import controller.automataController as automataController
 
+
 def main():
     while True:
         isValidInput = True
         while isValidInput:
-            states = input("Ingrese los estados del automata 1 separados por coma: ").split(",")
+            states = input(
+                "Enter the states of automaton 1 separated by commas: ").split(",")
             if len(states) > 4:
-                print("El automata solo puede tener 4 estados")
+                print("The automaton can only have 4 states!")
             else:
                 isValidInput = False
         isValidInput = True
-        alphabet = input("Ingrese el alfabeto del automata 1 separados por coma: ").split(",")
+        alphabet = input(
+            "Enter the alphabet of automaton 1 separated by commas: ").split(",")
         transitions = []
         for state in states:
             for symbol in alphabet:
                 isValidInput = True
                 while isValidInput:
-                    next_state = input(f"Ingrese el estado siguiente del estado {state} con el simbolo {symbol}: ")
+                    next_state = input(
+                        f"Enter the next state of state {state} with symbol {symbol}: ")
                     if next_state not in states:
-                        print("El estado no pertenece al automata")
+                        print("The state does not belong to the automaton!")
                     else:
                         isValidInput = False
-                        transitions.append(automata.Transition(state, symbol, next_state))
+                        transitions.append(automata.Transition(
+                            state, symbol, next_state))
 
         isValidInput = True
 
         while isValidInput:
-            initial_state = input("Ingrese el estado inicial del automata 1: ")
+            initial_state = input("Enter the initial state of automaton 1: ")
             if initial_state not in states:
-                print("El estado no pertenece al automata")
+                print("The state does not belong to the automaton!")
             else:
                 isValidInput = False
         isValidInput = True
 
         while isValidInput:
-            final_states = input("Ingrese los estados finales del automata 1 separados por coma: ").split(",")
+            final_states = input(
+                "Enter the final states of automaton 1 separated by commas: ").split(",")
             for state in final_states:
                 if state not in states:
-                    print("El estado no pertenece al automata")
+                    print("The state does not belong to the automaton!")
                     break
             else:
                 isValidInput = False
-        
+
         isValidInput = True
 
-        automata1 = automata.Automata(states, alphabet, transitions, initial_state, final_states)
+        automaton1 = automata.Automata(
+            states, alphabet, transitions, initial_state, final_states)
 
         while isValidInput:
-            states = input("Ingrese los estados del automata 2 separados por coma: ").split(",")
+            states = input(
+                "Enter the states of automaton 2 separated by commas: ").split(",")
             if len(states) > 4:
-                print("El automata solo puede tener 4 estados")
+                print("The automaton can only have 4 states!")
             else:
                 isValidInput = False
 
-        
-        alphabet = input("Ingrese el alfabeto del automata 2 separados por coma: ").split(",")
+        alphabet = input(
+            "Enter the alphabet of automaton 2 separated by commas: ").split(",")
         transitions = []
         for state in states:
             for symbol in alphabet:
                 isValidInput = True
                 while isValidInput:
-                    next_state = input(f"Ingrese el estado siguiente del estado {state} con el simbolo {symbol}: ")
+                    next_state = input(
+                        f"Enter the next state of state {state} with symbol {symbol}: ")
                     if next_state not in states:
-                        print("El estado no pertenece al automata")
+                        print("The state does not belong to the automaton!")
                     else:
                         isValidInput = False
-                        transitions.append(automata.Transition(state, symbol, next_state))
+                        transitions.append(automata.Transition(
+                            state, symbol, next_state))
 
         isValidInput = True
         while isValidInput:
-            initial_state = input("Ingrese el estado inicial del automata 2: ")
+            initial_state = input("Enter the initial state of automaton 2: ")
             if initial_state not in states:
-                print("El estado no pertenece al automata")
+                print("The state does not belong to the automaton!")
             else:
                 isValidInput = False
         isValidInput = True
 
         while isValidInput:
-            final_states = input("Ingrese los estados finales del automata 2 separados por coma: ").split(",")
+            final_states = input(
+                "Enter the final states of automaton 2 separated by commas: ").split(",")
             for state in final_states:
                 if state not in states:
-                    print("El estado no pertenece al automata")
+                    print("The state does not belong to the automaton!")
                     break
                 else:
                     isValidInput = False
 
-        automata2 = automata.Automata(states, alphabet, transitions, initial_state, final_states)
+        automaton2 = automata.Automata(
+            states, alphabet, transitions, initial_state, final_states)
 
-        print ("Desea ingresar un tercer automata? (s : si, cualquier otra letra : no)")
+        print("Do you want to enter a third automaton? (y : yes, any other key : no)")
 
-        option = input("Ingrese una opcion: ")
+        option = input("Enter an option: ")
 
-        automata3 = None
-        if option.lower() == "s":
+        automaton3 = None
+        if option.lower() == "y":
             isValidInput = True
             while isValidInput:
-                states = input("Ingrese los estados del automata 3 separados por coma: ").split(",")
+                states = input(
+                    "Enter the states of automaton 3 separated by commas: ").split(",")
                 if len(states) > 4:
-                    print("El automata solo puede tener 4 estados")
+                    print("The automaton can only have 4 states!")
                 else:
                     isValidInput = False
 
-            alphabet = input("Ingrese el alfabeto del automata 3 separados por coma: ").split(",")
+            alphabet = input(
+                "Enter the alphabet of automaton 3 separated by commas: ").split(",")
             transitions = []
             for state in states:
                 for symbol in alphabet:
                     isValidInput = True
                     while isValidInput:
-                        next_state = input(f"Ingrese el estado siguiente del estado {state} con el simbolo {symbol}: ")
+                        next_state = input(
+                            f"Enter the next state of state {state} with symbol {symbol}: ")
                         if next_state not in states:
-                            print("El estado no pertenece al automata")
+                            print("The state does not belong to the automaton!")
                         else:
                             isValidInput = False
-                            transitions.append(automata.Transition(state, symbol, next_state))
+                            transitions.append(automata.Transition(
+                                state, symbol, next_state))
 
             isValidInput = True
             while isValidInput:
-                initial_state = input("Ingrese el estado inicial del automata 3: ")
+                initial_state = input(
+                    "Enter the initial state of automaton 3: ")
                 if initial_state not in states:
-                    print("El estado no pertenece al automata")
+                    print("The state does not belong to the automaton!")
                 else:
                     isValidInput = False
             isValidInput = True
 
             while isValidInput:
-                final_states = input("Ingrese los estados finales del automata 3 separados por coma: ").split(",")
+                final_states = input(
+                    "Enter the final states of automaton 3 separated by commas: ").split(",")
                 for state in final_states:
                     if state not in states:
-                        print("El estado no pertenece al automata")
+                        print("The state does not belong to the automaton!")
                         break
                     else:
                         isValidInput = False
 
-            automata3 = automata.Automata(states, alphabet, transitions, initial_state, final_states)
+            automaton3 = automata.Automata(
+                states, alphabet, transitions, initial_state, final_states)
 
-        print("Que automata desea usar para el complemento? (1 : Union, 2 : Interseccion)")
+        print("Which automaton do you want to use for the complement? (1 : Union, 2 : Intersection)")
 
-        option = input("Ingrese una opcion: ")
+        option = input("Enter an option: ")
 
-        if automata3 == None:
-            automataUnion = automataController.automataUnion(automata1, automata2)
-            showAutomata.showAutomata(automataUnion, "Union")
-            automataIntersection = automataController.automataIntersection(automata1, automata2)
-            showAutomata.showAutomata(automataIntersection, "Interseccion")
+        if automaton3 is None:
+            automatonUnion = automataController.automataUnion(
+                automaton1, automaton2)
+            showAutomata.showAutomata(automatonUnion, "Union")
+            automatonIntersection = automataController.automataIntersection(
+                automaton1, automaton2)
+            showAutomata.showAutomata(automatonIntersection, "Intersection")
 
-            automataComplement = None
+            automatonComplement = None
             if option == "1":
-                automataComplement = automataController.automataComplement(automataUnion)
+                automatonComplement = automataController.automataComplement(
+                    automatonUnion)
             else:
-                automataComplement = automataController.automataComplement(automataIntersection)
-            showAutomata.showAutomata(automataComplement, "Complemento")
-            automataReverse = automataController.automataReverse(automataIntersection)
-            showAutomata.showAutomata(automataReverse[1], "SimpleReverse")
-            showAutomata.showAutomata(automataReverse[0], "Reverso")
+                automatonComplement = automataController.automataComplement(
+                    automatonIntersection)
+            showAutomata.showAutomata(automatonComplement, "Complement")
+            automatonReverse = automataController.automataReverse(
+                automatonIntersection)
+            showAutomata.showAutomata(automatonReverse[1], "SimpleReverse")
+            showAutomata.showAutomata(automatonReverse[0], "Reverse")
 
         else:
-            automataUnion = automataController.automataUnion(automataController.automataUnion(automata1, automata2), automata3)
-            showAutomata.showAutomata(automataUnion, "Union")
-            automataIntersection = automataController.automataIntersection(automataController.automataIntersection(automata1, automata2), automata3)
-            showAutomata.showAutomata(automataIntersection, "Interseccion")
+            automatonUnion = automataController.automataUnion(
+                automataController.automataUnion(automaton1, automaton2), automaton3)
+            showAutomata.showAutomata(automatonUnion, "Union")
+            automatonIntersection = automataController.automataIntersection(
+                automataController.automataIntersection(automaton1, automaton2), automaton3)
+            showAutomata.showAutomata(automatonIntersection, "Intersection")
 
-            automataComplement = None
+            automatonComplement = None
             if option == "1":
-                automataComplement = automataController.automataComplement(automataUnion)
+                automatonComplement = automataController.automataComplement(
+                    automatonUnion)
             else:
-                automataComplement = automataController.automataComplement(automataIntersection)
-            showAutomata.showAutomata(automataComplement, "Complemento")
-            automataReverse = automataController.automataReverse(automataIntersection)
-            showAutomata.showAutomata(automataReverse[1], "SimpleReverse")
-            showAutomata.showAutomata(automataReverse[0], "Reverso")
+                automatonComplement = automataController.automataComplement(
+                    automatonIntersection)
+            showAutomata.showAutomata(automatonComplement, "Complement")
+            automatonReverse = automataController.automataReverse(
+                automatonIntersection)
+            showAutomata.showAutomata(automatonReverse[1], "SimpleReverse")
+            showAutomata.showAutomata(automatonReverse[0], "Reverse")
 
-        print ("Este es el estado inicial del automata union", automataUnion.initial_state)
-        print ("Este es el estado inicial del automata interseccion", automataIntersection.initial_state)
+        print("This is the initial state of the union automaton",
+              automatonUnion.initial_state)
+        print("This is the initial state of the intersection automaton",
+              automatonIntersection.initial_state)
 
-        print ("Desea continuar? (s : si, cualquier otra letra : no)")
+        print("Do you want to continue? (y : yes, any other key : no)")
 
-        option = input("Ingrese una opcion: ")
+        option = input("Enter an option: ")
 
-        if option.lower() != "s":
+        if option.lower() != "y":
             break
+
 
 if __name__ == "__main__":
     main()
